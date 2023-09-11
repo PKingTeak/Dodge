@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6737073008990367566}
   - component: {fileID: 4504722806667478562}
   - component: {fileID: 2697942854357125892}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: P_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,5 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 529fbe71bee04c9408442eabb5f23c67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  Enemy: {fileID: 3461591681880942130, guid: 52a350d12a1ab434387a0a759fff1922, type: 3}
+  maxHitPoints: 0
+  startingHitPoints: 0
+  hitPoints: {fileID: 0}
+  healthBarPrefab: {fileID: 0}
+  LevelPoints: 0
+  speed: 9
+  damageStrength: 10

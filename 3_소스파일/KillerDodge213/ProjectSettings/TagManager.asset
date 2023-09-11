@@ -5,7 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enermy
-  - Wall
+  - Item
+  - S_Enermy
   layers:
   - Default
   - TransparentFX
@@ -13,13 +14,13 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
   - 
+  - Bullet
+  - Enermy
+  - Wall
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - CanBeUsed
   - 
   - 
   - 
