@@ -34,6 +34,7 @@ public class PlayerMove : MonoBehaviour
         {
             Key = 1;
             transform.Rotate(0.0f, Key,0.0f);
+            
         }
         if(Input.GetKey(KeyCode.LeftArrow))
         {
@@ -42,6 +43,10 @@ public class PlayerMove : MonoBehaviour
             transform.Rotate(0.0f, Key, 0.0f);
            
         }
+        ///<summary>
+        ///플레이어 움직임 구현 
+        ///유니티 엔진 자체에 있는 프로젝트 셋팅을 이용하여 좀더 편리하고 엔진의 이점을 이용하여 간단하게 움직음을 구현해보았습니다.
+        ///</summary>
 
        
     }

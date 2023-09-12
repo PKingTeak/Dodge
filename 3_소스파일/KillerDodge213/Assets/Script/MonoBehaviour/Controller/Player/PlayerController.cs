@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 public class PlayerController :  Character
 {
-    HitPoints hitPoints;
-    
-   
-    public float LevelPoints; // 시간 안될꺼 같으면 빼자 
-    
-    public HealthBar healthBar;
+    public HitPoints hitPoints;
+    public HealthBar healthBarPrefab;
+    HealthBar healthBar;
     GameManager gamemanger;
 
+    LevelBar levelBar;
+
+    
 
   
 
@@ -20,11 +20,9 @@ public class PlayerController :  Character
     // Start is called before the first frame update
     void Start()
     {
-        hitPoints = healthBar.hitPoints;
-
         hitPoints.value = startingHitPoints;
 
-        
+        healthBar = Instantiate(healthBarPrefab);
 
         healthBar.character = this;
         
@@ -34,13 +32,16 @@ public class PlayerController :  Character
     }
 
     // Update is called once per frame
-   
+    void Update()
+    {
+        
+      
+    }
 
     
 
         void OnTriggerEnter(Collider other) 
         {
-            Debug.Log("아야야ㅑ");
             if(other.tag == "Item") //comparetag를 이용하면 접촉판단이 안된다.
             {
                 ItemData hitObject = other.gameObject.GetComponent<Consumable>().Item;
@@ -60,6 +61,11 @@ public class PlayerController :  Character
                         //스킬 포인트를 모아서 레벨업 하는 형식으로 만들 얘정
                         //점수 올리는것으로 대체 
                         break;
+
+                        case ItemData.ItemType.Exp:
+                        //LevelUp();
+                        break;
+                        
 
                         default :
                         break;
@@ -89,7 +95,7 @@ public class PlayerController :  Character
             }
             return false;
 
-           
+            // 무적 아이템을 먹었을때 3초 동안 무적을 유지하려면 코루틴을 사용해야되나요?
             
         }
 
@@ -98,16 +104,14 @@ public class PlayerController :  Character
     {
         while(true)
         {
-            hitPoints.value = hitPoints.value  - damage;
             if(hitPoints.value < float.Epsilon)
             {
-                healthBar.HPBar.fillAmount = 0;
                 KillerCharacter();
-                Die();
+                gamemanger.EndGame();
                 break;
             }
 
-            if(interval > float.Epsilon)
+            if(interval >float.Epsilon)
             {
                 yield return new WaitForSeconds(interval);
             }
@@ -117,6 +121,10 @@ public class PlayerController :  Character
             }
         }
     }
+    /// <summary>
+    /// Character클래스를 상속받아 캐릭터가 데미지를 입었을때 체력이 줄어들게 구현하였습니다
+    /// 오버라이딩 한이유는 적은 한번에 삭제가 되도록 하였지만 플레이어는 체력이 따로 존재하기 때문에 부모 클래스로 각각 따로따로 제어하기 위해 사용하였습니다.
+    /// </summary>
 
     public override void KillerCharacter()
     {
@@ -125,6 +133,26 @@ public class PlayerController :  Character
         Destroy(healthBar.gameObject);
     }
 
+    
    
 }
+/*
+public  void LevelUp()
+    {
+        
 
+        for(Startlevel = 0 ; Startlevel<Maxlevel;Startlevel+=Droplevel)
+        {
+            if(Startlevel == Maxlevel)
+            {
+                Maxlevel += Pluslevel; // 경험치량 커지고
+                Startlevel = 0; // 시작 경험치는 0으로 초기화 시켜주고
+
+            }
+            
+        }
+s
+        
+
+    }
+    */

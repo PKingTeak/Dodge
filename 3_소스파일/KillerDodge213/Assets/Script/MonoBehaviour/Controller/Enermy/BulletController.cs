@@ -8,10 +8,6 @@ public class BulletController : MonoBehaviour
     private Rigidbody B_rigid; //외부에서 못만지게 하고싶음.
 
    
-    public  int damageStrength;
-    Coroutine damageCoroutine; 
-
-   
 
     
 
@@ -21,34 +17,36 @@ public class BulletController : MonoBehaviour
         B_rigid = GetComponent<Rigidbody>();
         B_rigid.velocity = transform.forward * speed;
 
-        
       
 
-        Destroy(gameObject,5.0f);   // 총알 삭제
+        Destroy(gameObject,4.0f);  
     }
-    
-    private void OnTriggerEnter (Collider other) 
+
+
+    void OnTriggerEnter(Collider other) //다른것과 충돌했는지 확인
+
     {
-        Debug.Log("아야");
-        if(other.gameObject.tag == "Player")
-        {
-            PlayerController player = other.gameObject.GetComponent<PlayerController>();
-        
-            if(damageCoroutine == null)
-            {
-                damageCoroutine = StartCoroutine(player.DamageCharacter(damageStrength,1.0f));
-            }
-        }
+        PlayerController playerController;
+        Debug.Log("Player Collider IN");
 
         
+            //tag불러오는 코드
+        if(other.tag == "Player")
+        {
+            playerController = other.GetComponent<PlayerController>();   
+
+
+        
+            if(playerController != null) 
+            Debug.Log("플레이어 사망");
+            playerController.KillerCharacter();
+            
+        }
         
     }
-    
-    
+    ///<summary>
+    /// 마찬가지로 적들도 플레이어가 쏜 총에 맞으면 사망해야하기 때문에 OnTriggerEnter매서드를 이용하여 충돌을 감지하였습니다.
+    ///</summary>
+
 }
-
-
-
-
-  
 

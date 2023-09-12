@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletSpawner : Character
+public class BulletSpawner : MonoBehaviour
 {
     // Start is called before the first frame update
         public GameObject E_bulletPrefab; 
@@ -12,10 +12,6 @@ public class BulletSpawner : Character
         private Transform target;
         private float spawnRate;
         private float timeAfterSpawn; // 발사후 대기 시간
-        public float hitPoints;
-        public  int damageStrength;
-        Coroutine damageCoroutine; 
-
 
         GameObject P_Bullet;
     void Start()
@@ -46,27 +42,13 @@ public class BulletSpawner : Character
     
 
     }
-    public override IEnumerator DamageCharacter(int damage, float interval)
-        
-        {
-            while(true)
-            {
-                hitPoints = hitPoints - damage;
-                if(hitPoints <= float.Epsilon)
-                {
-                    //죽었을때 
-                    KillerCharacter();
-                    GameManager.Instance.AddScore(2);               
-                }
-                if(interval >float.Epsilon)
-                {
-                    yield return new WaitForSeconds(interval);
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-  
+   public void E_Die()
+   {
+
+    gameObject.SetActive(false);
+    Destroy(gameObject);
+    GameManager gameManager = FindObjectOfType<GameManager>();
+    gameManager.AddScore(1);
+    
+   }
 }

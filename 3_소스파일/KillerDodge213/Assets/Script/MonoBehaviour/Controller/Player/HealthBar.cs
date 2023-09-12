@@ -15,7 +15,7 @@ public class HealthBar : MonoBehaviour
     public Text hpText;
 
     float maxHitPoints;
-    // Start is called before the first frame updateW
+    // Start is called before the first frame update
     void Start()
     {
         maxHitPoints = character.maxHitPoints;
@@ -28,12 +28,8 @@ public class HealthBar : MonoBehaviour
     {
         if(character != null)
         {
-            
             HPBar.fillAmount = hitPoints.value / maxHitPoints;
-            
-
             hpText.text = "HP:" + (HPBar.fillAmount * 100); // 퍼센트로 표시하기 위함
-
         }
         
     }

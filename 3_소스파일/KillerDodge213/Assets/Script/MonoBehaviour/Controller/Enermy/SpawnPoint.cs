@@ -15,8 +15,11 @@ public class SpawnPoint : MonoBehaviour
     }
 
     // Update is called once per frame
-   
-    public GameObject SpawnObject()
+    void Update()
+    {
+        
+    }
+    public GameObject spawnObject()
     {
         if(prefabToSpawn != null)
         {

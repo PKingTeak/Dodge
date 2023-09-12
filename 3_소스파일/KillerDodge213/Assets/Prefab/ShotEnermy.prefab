@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7204292341147842215}
   m_Layer: 9
   m_Name: ShotEnermy
-  m_TagString: S_Enermy
+  m_TagString: Enermy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -111,10 +111,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3446d045d3f15854dbbfc1c5f0b1708d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 30
-  startingHitPoints: 30
   E_bulletPrefab: {fileID: 7453698506547486291, guid: fbd28b14bdd70e8499769d2da9d67286, type: 3}
   spawnRateMin: 0.5
   spawnRateMax: 3
-  hitPoints: 0
-  damageStrength: 3

@@ -23,14 +23,11 @@ public class GameManager : MonoBehaviour
 
     public Text recodetime;
     public Text scoreText;
-   
     public int score = 0;
     
   
     private float surviveTime;
     private bool isGameover;
-
-    private string rank;
    
     private void Awake()
     {
@@ -48,7 +45,7 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {//스타트는 한번만 실행 되는데 이곳으로 하는이유 플레이할때 없어지고 사망하면 생기니까 나올때마다 스타트가 생긴다.
-        surviveTime = 0;
+        surviveTime = 0; // 생존 시간을 측정하기 위한 변수
         isGameover = false;
        
 
@@ -74,7 +71,12 @@ public class GameManager : MonoBehaviour
     }
     
 
-    //게임오버
+    /// <summary>
+    /// 게임 종료시 매서드
+    /// 게임 오버라는 텍스트 출력
+    /// 가장 오래 버틴시간을 출력해주고
+    /// 생존 시간을 표시합니다
+    /// </summary>
     
     public void EndGame()
     {
@@ -84,17 +86,21 @@ public class GameManager : MonoBehaviour
         float bestTime = PlayerPrefs.GetFloat("BestTime");
     
 
+
         if(surviveTime > bestTime)
         {
            bestTime = surviveTime;
            PlayerPrefs.SetFloat("BestTime",bestTime);
+
         }
         recodetime.text = "BestTime: " + (int)bestTime;
       
     }
 
+/// <summary>
+/// 게임도중 점수를 얻게 되는 점수를 저장하는 메서드 입니다. 
+/// </summary>
 
-    //점수 추가 클래스
     
     public void AddScore(int newScore)
 {

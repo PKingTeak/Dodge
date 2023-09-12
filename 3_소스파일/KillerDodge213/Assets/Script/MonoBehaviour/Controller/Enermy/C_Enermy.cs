@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class C_Enermy : Character
 {
-
-    // 근접 공격 하는 적
-    private Transform target;
      public float hitPoints;
      public  int damageStrength;
-     Coroutine damageCoroutine; 
-     
 
+    public PlayerController player;
+     public GameObject enermy;
 
     
+    
+    Coroutine damageCoroutine; 
+
     public override IEnumerator DamageCharacter(int damage, float interval)
     {
         while(true)
@@ -21,10 +21,9 @@ public class C_Enermy : Character
             hitPoints = hitPoints - damage;
 
             if(hitPoints <= float.Epsilon)
-            {
-                KillerCharacter(); 
-                GameManager.Instance.AddScore(2);
-            }   
+            
+            KillerCharacter(); 
+
             if(interval > float.Epsilon)
             {
                 yield return new WaitForSeconds(interval);
@@ -38,16 +37,20 @@ public class C_Enermy : Character
         }
     }
 
+    
+
+    
+
+
     private void OnCollisionEnter(Collision other) 
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "player")
         {
             PlayerController player = other.gameObject.GetComponent<PlayerController>();
         
             if(damageCoroutine == null)
             {
                 damageCoroutine = StartCoroutine(player.DamageCharacter(damageStrength,1.0f));
-                // 캐릭터 한테 붙었을때 데미지 주기 
             }
         }
 
@@ -57,7 +60,7 @@ public class C_Enermy : Character
 
     private void OnCollisionExit(Collision other) 
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "player")
         {
             if(damageCoroutine != null)
             {

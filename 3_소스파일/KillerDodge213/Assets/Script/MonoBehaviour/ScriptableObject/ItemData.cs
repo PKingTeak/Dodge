@@ -14,14 +14,17 @@ public class ItemData : ScriptableObject
     {
         Points,
 
-        HEALTH,
+        HEALTH
 
-        Skill
-
+   /// 아이템 타입은 포인트와 힐팩 이렇게 두개만 생각하여 2가지의 종류를 미리 만들어 놓았습니다.
 
     }
 
     public ItemType itemType;
 
+///<summary>
+///아이템 데이터 각각의 아이템들이 가져야하는 기본속성을 설정하였습니다.
+///
+/// </summary>
 
 }
